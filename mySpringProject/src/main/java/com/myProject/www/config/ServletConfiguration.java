@@ -1,5 +1,6 @@
 package com.myProject.www.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
@@ -30,6 +31,7 @@ public class ServletConfiguration implements WebMvcConfigurer{
 		registry.viewResolver(viewResolver);
 	}
 	
+	@Bean(name = "multipartResolver")
 	public MultipartResolver getMultipartResolver() {
 		StandardServletMultipartResolver multipartResolver = new StandardServletMultipartResolver();
 		return multipartResolver;

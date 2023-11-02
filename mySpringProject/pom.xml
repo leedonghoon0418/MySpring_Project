@@ -278,6 +278,7 @@
                     <downloadJavadocs>true</downloadJavadocs>
                 </configuration>
             </plugin>
+            
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -289,7 +290,6 @@
                     <showWarnings>true</showWarnings>
                     <showDeprecation>true</showDeprecation>
                 </configuration>
-                
             </plugin>
             
             <plugin>
@@ -302,9 +302,8 @@
             </plugin>
             
             <plugin>
-            	<groupId>org.apache.maven.plugin</groupId>
+            	<groupId>org.apache.maven.plugins</groupId>
             	<artifactId>maven-war-plugin</artifactId>
-            	<version>3.2.0</version>
             	<configuration>
             		<!-- web.xml 없어도 찾지 말라는 구문 -->
             		<failOnMissingWebXml>false</failOnMissingWebXml>
