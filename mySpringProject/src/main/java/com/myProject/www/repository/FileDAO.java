@@ -14,4 +14,6 @@ public interface FileDAO {
 
 	int fileRemove(String uuid);
 
+	void remove(long bno);
+
 }

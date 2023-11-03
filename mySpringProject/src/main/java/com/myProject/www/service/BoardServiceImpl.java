@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.myProject.www.domain.BoardDTO;
 import com.myProject.www.domain.BoardVO;
 import com.myProject.www.domain.FileVO;
+import com.myProject.www.domain.PagingVO;
 import com.myProject.www.repository.BoardDAO;
 import com.myProject.www.repository.FileDAO;
 
@@ -44,11 +45,7 @@ public class BoardServiceImpl implements BoardService{
 		return isUp;
 	}
 
-	@Override
-	public List<BoardVO> getList() {
-		// TODO Auto-generated method stub
-		return bdao.getList();
-	}
+	
 
 	@Override
 	public BoardDTO getDetail(long bno) {
@@ -82,6 +79,34 @@ public class BoardServiceImpl implements BoardService{
 	public int fileRemove(String uuid) {
 		int isOk = fdao.fileRemove(uuid);
 		return isOk;
+	}
+
+	@Override
+	public int remove(long bno) {
+		
+		fdao.remove(bno);
+		
+		return bdao.remove(bno);
+	}
+
+
+
+	@Override
+	public List<BoardVO> getList(PagingVO pgvo) {
+		// TODO Auto-generated method stub
+		return bdao.getList(pgvo);
+	}
+
+
+
+
+
+
+
+	@Override
+	public int getTotal(PagingVO pgvo) {
+		// TODO Auto-generated method stub
+		return bdao.getTotal(pgvo);
 	}
 
 	

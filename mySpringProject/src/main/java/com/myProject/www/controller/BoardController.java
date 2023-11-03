@@ -22,7 +22,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.myProject.www.domain.BoardDTO;
 import com.myProject.www.domain.BoardVO;
 import com.myProject.www.domain.FileVO;
+import com.myProject.www.domain.PagingVO;
 import com.myProject.www.handler.FileHandler;
+import com.myProject.www.handler.PagingHandler;
 import com.myProject.www.service.BoardService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -53,14 +55,21 @@ public class BoardController {
 	}
 	
 	@GetMapping("/list")
-	public String getList(Model m) {
+	public String getList(Model m, PagingVO pgvo) {
 		
-		List<BoardVO> list = bsv.getList();
+		List<BoardVO> list = bsv.getList(pgvo);
 		
 		m.addAttribute("bvo",list);
 				
+		
+		int totalCount = bsv.getTotal(pgvo);
+		
+		PagingHandler ph = new PagingHandler(pgvo, totalCount);
+		m.addAttribute("ph",ph);
+		
 		return "/board/list";
 	}
+	
 	@GetMapping("/detail")
 	public String detail(Model m, @RequestParam("bno") long bno) {
 		
@@ -71,6 +80,7 @@ public class BoardController {
 		m.addAttribute("flist",bdto.getFlist());
 		return "/board/detail";
 	}
+	
 	@GetMapping("/modify")
 	public String modify(Model m,@RequestParam("bno") long bno) {
 		BoardDTO bdto = bsv.getDetail(bno);
@@ -92,6 +102,15 @@ public class BoardController {
 		
 		return "index";
 	}
+	@GetMapping("/remove")
+	public String remove(@RequestParam("bno") long bno) {
+		int isOk = bsv.remove(bno);
+		
+		
+		return "index";
+	}
+	
+	
 	
 	@DeleteMapping(value="/file/{uuid}" , produces = MediaType.TEXT_PLAIN_VALUE)
 	public ResponseEntity<String> deleteFile(@PathVariable("uuid")String uuid) {
