@@ -1,5 +1,7 @@
 package com.myProject.www.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -26,7 +28,25 @@ public class CommentServiceImpl implements CommentService{
 
 	@Override
 	public PagingHandler getList(int bno, PagingVO pgvo) {
+		
+		int totalCount = cdao.selectOneTotalCount(bno);
+		List<CommentVO> list = cdao.getCommentListPaging(bno,pgvo);
+		log.info(list+"comment list");
+		PagingHandler ph = new PagingHandler(pgvo, totalCount, list);
+		
+		
+		return ph;
+	}
+
+	@Override
+	public int removeComment(int cno) {
 		// TODO Auto-generated method stub
-		return null;
+		return cdao.removeComment(cno);
+	}
+
+	@Override
+	public int updateComment(CommentVO cvo) {
+		// TODO Auto-generated method stub
+		return cdao.updateComment(cvo);
 	}
 }

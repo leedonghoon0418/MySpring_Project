@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import com.myProject.www.domain.CommentVO;
 import com.myProject.www.domain.PagingVO;
 
 import lombok.Getter;
@@ -22,7 +23,7 @@ public class PagingHandler {
 	private int totalCount;
 	private int realEndPage;
 	
-	private List<PagingVO> cmtList;
+	private List<CommentVO> cmtList;
 	
 	public PagingHandler(PagingVO pgvo, int totalCount) {
 		this.pgvo = pgvo;
@@ -38,6 +39,11 @@ public class PagingHandler {
 		}
 		this.prev = startPage > 1;
 		this.next = endPage < realEndPage;
+	}
+	
+	public PagingHandler(PagingVO pgvo, int totalCount, List<CommentVO> cmtList) {
+		this(pgvo, totalCount);
+		this.cmtList = cmtList;
 	}
 	
 	

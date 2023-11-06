@@ -33,6 +33,17 @@
           <a class="nav-link" href="/board/register">BOARD REG</a>
         </li>
         
+        <li class="nav-item">
+          <a class="nav-link" href="/member/register">SIGN UP</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" href="/board/register">LOGIN</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" href="/board/register">LOGOUT</a>
+        </li>
         
       
       </ul>

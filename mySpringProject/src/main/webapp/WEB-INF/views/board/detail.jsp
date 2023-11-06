@@ -77,11 +77,53 @@
 			 <textarea class="form-control"  rows="3" id="cmtText"></textarea>
 		</div>
 		<button type="button" id="postBtn">POST</button>
-		
-		<div id="commentZone">
-		
-		</div>
 	</div>
+	
+	<div>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>WRITER</th>
+					<th>CONTENT</th>
+					<th>REG-DATE</th>
+					<th>MOD-DATE</th>
+					<th>MODIFY</th>
+					<th>REMOVE</th>
+				</tr>
+			</thead>
+			
+			<tbody id="commentZone"></tbody>
+		</table>
+	</div>
+	
+	<div>
+		<button type="button" id="moreBtn" data-page="1" style="visibility:hidden">MORE</button>
+	</div>
+	
+	<div style="display: none" id="modZone">
+		<table>
+			<tr>
+				<th>#</th>
+				<td id="cmtModCno"></td>
+			</tr>
+			<tr>
+				<th>Writer</th>
+				<td id="cmtModWriter"> </td>
+			</tr>
+			<tr>
+				<th>Content</th>
+				<td><input type="text" id="cmtModText" name="content"></td>
+			</tr>
+			<tr>
+				<th>Reg-Date</th>
+				<td id="cmtModRegAt"></td>
+			</tr>
+		</table>
+		<button type="button" id="editBtn">Edit</button>
+		<button type="button" id="exitBtn">X</button>
+	</div>
+	
 
 </div>
 <jsp:include page="../layout/footer.jsp"></jsp:include>
@@ -92,6 +134,10 @@
 <script type="text/javascript">
 let bnoVal = `<c:out value="${bvo.bno}"/>`;
 console.log(bnoVal);
+</script>
+
+<script type="text/javascript">
+getCommentList(bnoVal);
 </script>
 
 </body>
