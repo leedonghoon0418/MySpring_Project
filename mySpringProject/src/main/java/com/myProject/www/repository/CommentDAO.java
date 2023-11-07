@@ -19,5 +19,9 @@ public interface CommentDAO {
 
 	int updateComment(CommentVO cvo);
 
+	void cmtQty();
+
+	
+
 	
 }

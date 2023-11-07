@@ -21,4 +21,12 @@
   	<delete id="remove">
   		delete from file where bno = #{bno}
   	</delete>
+  	
+  	<update id="hasFile">
+  		update board b set has_file = (select count(uuid) from file where bno = b.bno)
+  	</update>
+  	
+  	<select id="selectFlist" resultType="com.myProject.www.domain.FileVO">
+  		select * from file
+  	</select>
   </mapper>

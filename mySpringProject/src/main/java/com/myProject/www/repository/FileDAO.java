@@ -16,4 +16,8 @@ public interface FileDAO {
 
 	void remove(long bno);
 
+	void hasFile();
+
+	List<FileVO> selectFlist();
+
 }

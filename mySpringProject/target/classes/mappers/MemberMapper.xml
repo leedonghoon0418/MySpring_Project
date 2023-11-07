@@ -4,6 +4,10 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.myProject.www.repository.MemberDAO">
+  	<insert id="registerMember">
+  		insert into member(email, pwd, nick_name)
+  		values(#{email},#{pwd},#{nickName})
+  	</insert>
   	
   	<update id="updateLastLogin">
   		update member set last_login = now() where email = #{email}
@@ -17,12 +21,28 @@
   		select * from member where email = #{email}
   	</select>
   
-  	<insert id="registerMember">
-  		insert into member(email,pwd,nick_name)
-  		values(#{email},#{pwd},#{nickName})
-  	</insert>
-  	
   	<insert id="insertAuthInit">
   		insert into auth_member values(#{email},'ROLE_USER')
   	</insert>
+  	
+  	<select id="getDetail" resultType="com.myProject.www.security.MemberVO">
+  		select * from member where email = #{email}
+  	</select>
+  	
+  	<update id="postModify">
+  		update member set nick_name = #{nickName} where email = #{email}
+  	</update>
+  	
+  	<update id="postModify2">
+  		update member set nick_name = #{nickName}, pwd = #{pwd} where email = #{email}
+  	</update>
+  	
+  	<delete id="remove">
+  		delete from member where email = #{email}
+  	</delete>
+  	
+  	<delete id="authRemove">
+  		delete from auth_member where email = #{email}
+  	</delete>
+  	
   </mapper>

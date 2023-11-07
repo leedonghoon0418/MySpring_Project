@@ -8,4 +8,12 @@ public interface MemberService {
 
 	int register(MemberVO mvo);
 
+	MemberVO getDetail(String email);
+
+	int postModify(MemberVO mvo);
+
+	int postModify2(MemberVO mvo);
+
+	int remove(String email);
+
 }

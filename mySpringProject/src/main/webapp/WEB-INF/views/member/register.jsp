@@ -7,6 +7,7 @@
 <title>SIGN UP</title>
 </head>
 <body>
+<div class="container1">
 <jsp:include page="../layout/header.jsp"></jsp:include>
 <jsp:include page="../layout/nav.jsp"></jsp:include>
 
@@ -30,6 +31,6 @@
 	</form>
 
 <jsp:include page="../layout/footer.jsp"></jsp:include>
-
+</div>
 </body>
 </html>

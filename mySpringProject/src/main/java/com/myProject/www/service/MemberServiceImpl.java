@@ -29,4 +29,29 @@ public class MemberServiceImpl implements MemberService{
 		
 		return mdao.insertAuthInit(mvo.getEmail());
 	}
+
+	@Override
+	public MemberVO getDetail(String email) {
+		// TODO Auto-generated method stub
+		return mdao.getDetail(email);
+	}
+
+	@Override
+	public int postModify(MemberVO mvo) {
+		// TODO Auto-generated method stub
+		return mdao.postModify(mvo);
+	}
+
+	@Override
+	public int postModify2(MemberVO mvo) {
+		// TODO Auto-generated method stub
+		return mdao.postModify2(mvo);
+	}
+
+	@Override
+	public int remove(String email) {
+		mdao.remove(email);
+		
+		return mdao.authRemove(email);
+	}
 }

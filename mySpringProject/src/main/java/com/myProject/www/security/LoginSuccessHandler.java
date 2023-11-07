@@ -58,7 +58,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 			ses.removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
 		}
 		SavedRequest saveReq = reqCache.getRequest(request, response);
-		rdstg.sendRedirect(request, response, (saveReq != null ? saveReq.getRedirectUrl() : getAuthEmail()));
+		rdstg.sendRedirect(request, response, (saveReq != null ? saveReq.getRedirectUrl() : getAuthUrl()));
 	}
 
 }

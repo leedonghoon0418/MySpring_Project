@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,21 +30,45 @@
           <a class="nav-link" href="/board/list">BOARD LIST</a>
         </li>
         
-        <li class="nav-item">
-          <a class="nav-link" href="/board/register">BOARD REG</a>
-        </li>
+        <sec:authorize access="isAuthenticated()">
+	        <sec:authentication property="principal.mvo.email" var="authEmail"/>
+	        <sec:authentication property="principal.mvo.nickName" var="authNick"/>
+	        <sec:authentication property="principal.mvo.authList" var="auths"/>
         
-        <li class="nav-item">
-          <a class="nav-link" href="/member/register">SIGN UP</a>
-        </li>
+        	<c:choose>
+        		<c:when test="${auths.stream().anyMatch(authVO -> authVO.auth.equals('ROLE_ADMIN')).get() }">
+	        		 <li class="nav-item">
+	          			<a class="nav-link" href="/member/list">MEMBER LIST(ADMIN)</a>
+	        		</li>
+        		</c:when>
+        		
+        		<c:otherwise>
+        			 <li class="nav-item">
+	          			<a class="nav-link" href="/member/detail?email=${authEmail}">MEMBER DETAIL( ${authEmail} )</a>
+	        		</li>
+        		</c:otherwise>
+        	</c:choose>	
+        	
         
-        <li class="nav-item">
-          <a class="nav-link" href="/board/register">LOGIN</a>
-        </li>
+	        <li class="nav-item">
+	          <a class="nav-link" href="/member/logout">LOGOUT</a>
+	        </li>
+	              
+	        <li class="nav-item">
+	          <a class="nav-link" href="/board/register">BOARD REG</a>
+	        </li>
         
-        <li class="nav-item">
-          <a class="nav-link" href="/board/register">LOGOUT</a>
-        </li>
+        </sec:authorize>
+        <sec:authorize access="isAnonymous()">
+	        <li class="nav-item">
+	          <a class="nav-link" href="/member/register">SIGN UP</a>
+	        </li>
+	
+	        
+	        <li class="nav-item">
+	          <a class="nav-link" href="/member/login">LOGIN</a>
+	        </li>
+        </sec:authorize>
         
       
       </ul>

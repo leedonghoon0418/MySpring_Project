@@ -72,6 +72,8 @@ public class BoardController {
 	
 	@GetMapping("/detail")
 	public String detail(Model m, @RequestParam("bno") long bno) {
+		int readCnt = bsv.readcnt(bno);
+		
 		
 		BoardDTO bdto = bsv.getDetail(bno);
 		

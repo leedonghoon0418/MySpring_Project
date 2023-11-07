@@ -11,6 +11,7 @@ import com.myProject.www.domain.BoardVO;
 import com.myProject.www.domain.FileVO;
 import com.myProject.www.domain.PagingVO;
 import com.myProject.www.repository.BoardDAO;
+import com.myProject.www.repository.CommentDAO;
 import com.myProject.www.repository.FileDAO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +25,9 @@ public class BoardServiceImpl implements BoardService{
 	
 	@Inject
 	private FileDAO fdao;
+	
+	@Inject
+	private CommentDAO cdao;
 
 	@Override
 	public int register(BoardDTO bdto) {
@@ -93,7 +97,10 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public List<BoardVO> getList(PagingVO pgvo) {
-		// TODO Auto-generated method stub
+		
+		cdao.cmtQty();
+		fdao.hasFile();
+		
 		return bdao.getList(pgvo);
 	}
 
@@ -107,6 +114,14 @@ public class BoardServiceImpl implements BoardService{
 	public int getTotal(PagingVO pgvo) {
 		// TODO Auto-generated method stub
 		return bdao.getTotal(pgvo);
+	}
+
+
+
+	@Override
+	public int readcnt(long bno) {
+		
+		return bdao.readCnt(bno);
 	}
 
 	

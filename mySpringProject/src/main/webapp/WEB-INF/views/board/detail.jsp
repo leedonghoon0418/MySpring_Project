@@ -7,15 +7,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
 
-</style>
 </head>
 <body>
+
+<div class="container1">
 <jsp:include page="../layout/header.jsp"></jsp:include>
 <jsp:include page="../layout/nav.jsp"></jsp:include>
 <div class="mainDiv">
-	<table class="table table-hover">
+	<table >
 		<tr>
 			<th>BNO</th>
 			<td>${bvo.bno }</td>
@@ -63,24 +63,23 @@
 			</tr>
 		</c:forEach>
 	</table>
-	<a href="/board/remove?bno=${bvo.bno}"><button type="button">REMOVE</button></a>
-	<a href="/board/modify?bno=${bvo.bno}"><button type="button">MODIFY</button></a>
+	
 	
 	
 	<div>
 		<div class="mb-3">
-			 <label for="cmtWriter" class="form-label">Writer</label>
-			 <input type="text" class="form-control"  id="cmtWriter">
+			 <label for="cmtWriter">Writer</label>
+			 <input type="text" id="cmtWriter">
 		</div>
 		<div class="mb-3">
-			 <label for="cmtText" class="form-label">Content</label>
-			 <textarea class="form-control"  rows="3" id="cmtText"></textarea>
+			 <label for="cmtText" >Content</label>
+			 <textarea  rows="3" id="cmtText"></textarea>
 		</div>
 		<button type="button" id="postBtn">POST</button>
 	</div>
 	
 	<div>
-		<table class="table table-hover">
+		<table class="tableDiv">
 			<thead>
 				<tr>
 					<th>#</th>
@@ -100,34 +99,38 @@
 	<div>
 		<button type="button" id="moreBtn" data-page="1" style="visibility:hidden">MORE</button>
 	</div>
+	<a href="/board/remove?bno=${bvo.bno}"><button type="button" class="reBtn">REMOVE</button></a>
+	<a href="/board/modify?bno=${bvo.bno}"><button type="button" class="reBtn">MODIFY</button></a>
 	
-	<div style="display: none" id="modZone">
-		<table>
-			<tr>
-				<th>#</th>
-				<td id="cmtModCno"></td>
-			</tr>
-			<tr>
-				<th>Writer</th>
-				<td id="cmtModWriter"> </td>
-			</tr>
-			<tr>
-				<th>Content</th>
-				<td><input type="text" id="cmtModText" name="content"></td>
-			</tr>
-			<tr>
-				<th>Reg-Date</th>
-				<td id="cmtModRegAt"></td>
-			</tr>
-		</table>
-		<button type="button" id="editBtn">Edit</button>
-		<button type="button" id="exitBtn">X</button>
+	<div style="display: none" id="modZone" class="cmtModDiv">
+		<div class="cmtTableBtn">
+			<table class="cmtTable">
+				<tr>
+					<th>#</th>
+					<td id="cmtModCno"></td>
+				</tr>
+				<tr>
+					<th>Writer</th>
+					<td id="cmtModWriter"> </td>
+				</tr>
+				<tr>
+					<th>Content</th>
+					<td><input type="text" id="cmtModText" name="content"></td>
+				</tr>
+				<tr>
+					<th>Reg-Date</th>
+					<td id="cmtModRegAt"></td>
+				</tr>
+			</table>
+			<button type="button" id="editBtn">Edit</button>
+			<button type="button" id="exitBtn">X</button>
+		</div>
 	</div>
 	
 
 </div>
 <jsp:include page="../layout/footer.jsp"></jsp:include>
-
+</div>
 
 <script type="text/javascript" src="/resources/js/boardComment.js"></script>
 

@@ -25,4 +25,8 @@
   	<update id="updateComment">
   		update comment set content = #{content}, mod_at = now() where cno = #{cno}
   	</update>
+  	
+  	<update id="cmtQty">
+  		update board b set cmt_qty = (select count(cno) from comment where bno = b.bno)
+  	</update>
   </mapper>

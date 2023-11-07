@@ -5,8 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="/resources/css/css1.css">
 </head>
 <body>
-	<h1 >Spring Project</h1>
+	<h1 style="text-align: center">Spring Project</h1>
 </body>
 </html>

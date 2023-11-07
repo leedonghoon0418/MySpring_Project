@@ -9,6 +9,7 @@
 <title>BOARD MODIFY</title>
 </head>
 <body>
+<div class="container1">
 <jsp:include page="../layout/header.jsp"></jsp:include>
 <jsp:include page="../layout/nav.jsp"></jsp:include>
 
@@ -86,5 +87,6 @@
 <script type="text/javascript" src="/resources/js/boardModify.js"></script>
 <script type="text/javascript" src="/resources/js/boardRegister.js"></script>
 <jsp:include page="../layout/footer.jsp"></jsp:include>
+</div>
 </body>
 </html>

@@ -36,6 +36,11 @@
   		<include refid="search"></include>
   	</select>
   	
+  	<update id="readCnt">
+  		update board set read_count = read_count+1 where bno = #{bno}
+  	</update>
+  	
+  	
   	<sql id="search">
   		<if test="type != null">
   			<trim prefix="where" prefixOverrides="OR">

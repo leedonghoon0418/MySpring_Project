@@ -21,12 +21,10 @@ public interface BoardService {
 	int remove(long bno);
 
 	List<BoardVO> getList(PagingVO pgvo);
-	
-
-
-
 
 	int getTotal(PagingVO pgvo);
+
+	int readcnt(long bno);
 
 	
 

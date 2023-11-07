@@ -53,7 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		http.csrf().disable();
 		
 		http.authorizeRequests().antMatchers("/member/list").hasRole("ADMIN")
-		.antMatchers("/","/board/list","/member/login","/member/register").permitAll().anyRequest().authenticated();
+		.antMatchers("/","/board/list","/member/login","/member/register","/resources/**").permitAll().anyRequest().authenticated();
 		
 		http.formLogin().usernameParameter("email").passwordParameter("pwd")
 		.loginPage("/member/login").successHandler(authSuccessHandler())
