@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +8,7 @@
 <title>Board Register</title>
 </head>
 <body>
+<sec:authentication property="principal.mvo.email" var="authEmail"/>
 <div class="container1">
 	<jsp:include page="../layout/header.jsp"></jsp:include>
 	<jsp:include page="../layout/nav.jsp"></jsp:include>
@@ -19,7 +21,7 @@
 		
 		<div class="mb-3">
 			<label for="exampleFormControlInput1" class="form-label">Writer</label> 
-			<input type="text" class="form-control"id="exampleFormControlInput1" placeholder="writer" name="writer">
+			<input type="text" class="form-control"id="exampleFormControlInput1" name="writer" value="${authEmail }" readonly="readonly">
 		</div>
 		
 		<div class="mb-3">

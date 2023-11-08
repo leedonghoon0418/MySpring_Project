@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+    <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +11,7 @@
 
 </head>
 <body>
-
+<sec:authentication property="principal.mvo.email" var="authEmail"/>
 <div class="container1">
 <jsp:include page="../layout/header.jsp"></jsp:include>
 <jsp:include page="../layout/nav.jsp"></jsp:include>
@@ -66,17 +67,20 @@
 	
 	
 	
-	<div>
-		<div class="mb-3">
-			 <label for="cmtWriter">Writer</label>
-			 <input type="text" id="cmtWriter">
-		</div>
-		<div class="mb-3">
-			 <label for="cmtText" >Content</label>
-			 <textarea  rows="3" id="cmtText"></textarea>
-		</div>
-		<button type="button" id="postBtn">POST</button>
-	</div>
+		<c:if test="${not empty authEmail }">
+			<div>
+				<div class="mb-3">
+					 <label for="cmtWriter">Writer</label>
+					 <input type="text" id="cmtWriter" value="${authEmail }" readonly="readonly">
+				</div>
+				<div class="mb-3">
+					 <label for="cmtText" >Content</label>
+					 <textarea  rows="3" id="cmtText"></textarea>
+				</div>
+				
+					<button type="button" id="postBtn">POST</button>
+			</div>
+		</c:if>
 	
 	<div>
 		<table class="tableDiv">
@@ -99,8 +103,11 @@
 	<div>
 		<button type="button" id="moreBtn" data-page="1" style="visibility:hidden">MORE</button>
 	</div>
-	<a href="/board/remove?bno=${bvo.bno}"><button type="button" class="reBtn">REMOVE</button></a>
-	<a href="/board/modify?bno=${bvo.bno}"><button type="button" class="reBtn">MODIFY</button></a>
+	
+	<c:if test="${bvo.writer eq authEamil}">
+		<a href="/board/remove?bno=${bvo.bno}"><button type="button" class="reBtn">REMOVE</button></a>
+		<a href="/board/modify?bno=${bvo.bno}"><button type="button" class="reBtn">MODIFY</button></a>
+	</c:if>
 	
 	<div style="display: none" id="modZone" class="cmtModDiv">
 		<div class="cmtTableBtn">
